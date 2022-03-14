@@ -1,15 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Autocomplete from './components/autocomplete/autocomplete';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Debounce – How to Delay a Function in React JS using Lodash
-        </p>
-      </header>
+      <img src={logo} className="App-logo" alt="logo" />
+      <p>
+        Debounce – How to Delay a Function in React JS using Lodash
+      </p>
+      <Autocomplete onSelectItem={() => console.log('test')} />
     </div>
   );
 }

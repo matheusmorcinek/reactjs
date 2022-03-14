@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import lodash from 'lodash';
+import axios from 'axios';
+import classnames from 'classnames';
 
-const ITEMS_API_URL = 'http://localhost:3000/api/items';
+const ITEMS_API_URL = 'http://localhost:3001/api/countries';
 const DEBOUNCE_DELAY = 500;
 
 const fetchItems = async (value, setItems, setLoading) => {
-  setItems([]);
-  setLoading(true);
+    setItems([]);
+    setLoading(true);
 
-  try {
+    try {
 
-    const { data } = await axios(`${ITEMS_API_URL}?q=${value}`);
-    setItems(data);
-  } catch (error) {
+        const { data } = await axios(`${ITEMS_API_URL}?query=${value}`);
+        setItems(data);
+    } catch (error) {
 
-    console.error(error.message);
-  }
+        console.error(error.message);
+    }
 
-  setLoading(false);
+    setLoading(false);
 };
 
-export default Autocomplete = () => {
+const Autocomplete = ({ onSelectItem }) => {
 
     const [loading, setLoading] = useState(false);
     const [inputText, setInputText] = useState('');
@@ -65,4 +67,6 @@ export default Autocomplete = () => {
 
         </div>
     );
-}
+};
+
+export default Autocomplete;
