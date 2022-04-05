@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+    react-app:
+        build: ./
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        ports:
+            - '3000:3000'
+            - '6006:6006'
+        container_name: my-react-dev-env
+        volumes:
+            - '../:/my-app'
+        environment:
+            - NODE_ENV=development
+        # command: sh -c "apt-get update && apt-get upgrade && apt install -y curl && \curl -sSL https://get.rvm.io | bash && source /usr/local/rvm/scripts/rvm && rvm install 2.6.3 && rvm --default use 2.6.3 
+        # working_dir: /my-app    

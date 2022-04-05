@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/ubuntu
+{
+	"name": "Ubuntu",
+	"dockerComposeFile": "./docker-compose.yml",
+	"service": "react-app",
+	"workspaceFolder": "/my-app",
+	"extensions": [
+		"mhutchie.git-graph",
+		"firsttris.vscode-jest-runner",
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"eamodio.gitlens",
+		"donjayamanne.githistory"
+	]
+}
