@@ -1,16 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import './App.css';
+
+const reducer = (currentState, action) => {
+
+  switch (action.type) {
+    case 'increment':
+      return { count: currentState.count + 1 };
+    case 'decrement':
+      return { count: currentState.count - 1 };
+    default:
+      return currentState;
+  }
+}
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   const increment = () => {
-    setCount(prevCount => prevCount + 1);
+    dispatch({ type: 'increment' });
   };
-
+  
   const decrement = () => {
-    setCount(prevCount => prevCount - 1);
+    dispatch({ type: 'decrement' });
   };
 
   useEffect(() => {
@@ -24,7 +36,7 @@ function App() {
   return (
     <>
       <button onClick={decrement}>-</button>
-      <span>{count}</span>
+      <span>{state.count}</span>
       <button onClick={increment}>+</button>
     </>
   );
