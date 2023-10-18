@@ -2,4 +2,8 @@
     width: 100%;
     border: 1px solid #c2c2c2;
     border-radius: 2px;
+    height: 3.5vh;
+    font-size: 2vh;
+    font-weight: 100;
+    padding: 0 1vh
 }

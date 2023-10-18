@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import styles from './input-field.module.css';
 
-const InputField = ({ value, customClassNames, clearOnEnter = false, onKeyEnterPress = () => { }, maxChars = 100 }) => {
+const InputField = ({
+    value,
+    customClassNames,
+    clearOnEnter = false,
+    onKeyEnterPress = () => { },
+    maxChars = 100,
+    onValueChange
+}) => {
 
     const [fieldValue, setFieldValue] = useState(value);
 
@@ -12,6 +19,7 @@ const InputField = ({ value, customClassNames, clearOnEnter = false, onKeyEnterP
             return;
         }
         setFieldValue(event.target.value);
+        onValueChange(event.target.value);
     };
 
     const handleKeyDown = (event) => {
@@ -24,14 +32,6 @@ const InputField = ({ value, customClassNames, clearOnEnter = false, onKeyEnterP
             }
         };
     };
-
-    useEffect(() => {
-        console.log('component mount');
-    }, []);
-
-    useEffect(() => {
-        console.log('component render');
-    });
 
     return (
         <input
