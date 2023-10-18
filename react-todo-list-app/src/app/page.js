@@ -4,6 +4,8 @@ import styles from './page.module.css'
 import InputField from '../components/input-field/input-field'
 import { useState, useEffect } from 'react';
 import Task from '@/components/task/task';
+import { Button } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function Home() {
 
@@ -109,6 +111,13 @@ export default function Home() {
               )
             })
           }
+        </div>
+        <div>
+          <Button variant="text" startIcon={<SearchIcon />} />
+          <span>3 items left</span>
+          <Button variant="text">All</Button>
+          <Button variant="text">Active</Button>
+          <Button variant="text">Completed</Button>
         </div>
       </div>
     </main>
