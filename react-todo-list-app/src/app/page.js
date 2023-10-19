@@ -1,11 +1,18 @@
 "use client"
 
-import styles from './page.module.css'
-import InputField from '../components/input-field/input-field'
-import { useState, useEffect } from 'react';
 import Task from '@/components/task/task';
-import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import { useState, useEffect } from 'react';
+import InputField from '../components/input-field/input-field';
+import styles from './page.module.css';
+import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import DirectionsIcon from '@mui/icons-material/Directions';
+import SearchOffIcon from '@mui/icons-material/SearchOff';
 
 export default function Home() {
 
@@ -42,7 +49,9 @@ export default function Home() {
     }
   ];
 
+  const [inputSearchValue, setInputSearchValue] = useState('');
   const [descriptionValue, setDescriptionValue] = useState('');
+  const [countTasksLeft, setCountTasksLeft] = useState(0);
   const [tasks, setTasks] = useState(tasksMock);
 
   const handleInputEnterPress = () => {
@@ -61,14 +70,25 @@ export default function Home() {
     setTasks([...tasks, task]);
   };
 
-  // useEffect(() => {
-  //   console.log('page component mount');
-  // }, []);
+  const updateTaskCompletionCounter = () => {
+    const tasksLeft = tasks.filter(task => !task.completed)
+    console.log('tasksLeft.length', tasksLeft)
+    setCountTasksLeft(tasksLeft.length);
+  };
 
-  // useEffect(() => {
-  //   console.log('page component render');
-  //   console.log('tasks', tasks)
-  // });
+  useEffect(() => {
+    console.log('update', tasks)
+    updateTaskCompletionCounter();
+  }, [tasks]);
+
+  useEffect(() => {
+
+  }, [inputSearchValue]);
+
+  const handleInputSearchChange = (event) => {
+    console.log(event.target.value);
+    setInputSearchValue(event.target.value);
+  }
 
   const handleTaskChange = (id) => {
 
@@ -81,7 +101,6 @@ export default function Home() {
       }
       return task
     });
-
     setTasks(updatedTasks);
   };
 
@@ -112,12 +131,42 @@ export default function Home() {
             })
           }
         </div>
-        <div>
-          <Button variant="text" startIcon={<SearchIcon />} />
-          <span>3 items left</span>
-          <Button variant="text">All</Button>
-          <Button variant="text">Active</Button>
-          <Button variant="text">Completed</Button>
+        <div className={styles.footerContainer}>
+          <div>
+            <InputBase
+              value={inputSearchValue}
+              placeholder="Search Tasks"
+              inputProps={{ 'aria-label': 'search tasks' }}
+              className={styles.footerSearchInput}
+              onChange={handleInputSearchChange}
+            />
+            {
+              inputSearchValue ?
+                (
+                  <IconButton
+                    type="button"
+                    className={styles.footerSearchIcon}
+                    aria-label="search off"
+                  >
+                    <SearchOffIcon />
+                  </IconButton>
+                )
+                :
+                (<SearchIcon className={styles.footerSearchIcon} />)
+            }
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <span>
+            {
+              countTasksLeft ? `${countTasksLeft} task${countTasksLeft > 1 ? 's' : ''} left` : 'all done!'
+            }
+            </span>
+          </div>
+          <div>
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <Button variant="text" className={styles.footerButton}>All</Button>
+            <Button variant="text" className={styles.footerButton}>Active</Button>
+            <Button variant="text" className={styles.footerButton}>Completed</Button>
+          </div>
         </div>
       </div>
     </main>
