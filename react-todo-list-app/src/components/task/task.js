@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from 'react';
 import styles from './task.module.css';
 
 const Task = ({ id, completed, description, onCheckedChange }) => {
@@ -9,13 +10,17 @@ const Task = ({ id, completed, description, onCheckedChange }) => {
     };
 
     const handleTaskContainerClick = () => {
-        console.log('task click ', id);
         onCheckedChange(id);
     };
 
+    useEffect(() => {
+        console.log('id updated: ', id);
+        console.log('completed ', completed)
+    },[id, completed])
+
     return (
         <>
-            <div className={styles.taskContainer} onClick={handleTaskContainerClick}>
+            <label htmlFor={id} className={styles.taskContainer} onClick={handleTaskContainerClick}>
                 <input
                     id={id}
                     type="checkbox"
@@ -25,7 +30,7 @@ const Task = ({ id, completed, description, onCheckedChange }) => {
                 <span className={styles.taskDescription}>
                     {description}
                 </span>
-            </div>
+            </label>
             <div className={styles.taskDivider}></div>
         </>
     );

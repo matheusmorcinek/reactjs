@@ -1,0 +1,32 @@
+// const tasksMock = [
+  //   {
+  //     "id": 1,
+  //     "completed": false,
+  //     "description": "Go to the supermarket"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "completed": false,
+  //     "description": "Take the dog for a long walk"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "completed": false,
+  //     "description": "Call your grandparents and have a chat"
+  //   },
+  //   {
+  //     "id": 4,
+  //     "completed": false,
+  //     "description": "Clean out the garage"
+  //   },
+  //   {
+  //     "id": 5,
+  //     "completed": false,
+  //     "description": "Start a new workout routine"
+  //   },
+  //   {
+  //     "id": 6,
+  //     "completed": false,
+  //     "description": "Plan a weekend getaway"
+  //   }
+  // ];

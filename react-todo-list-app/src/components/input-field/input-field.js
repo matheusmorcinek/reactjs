@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from './input-field.module.css';
 
 const InputField = ({
     value,
+    placeholder,
     customClassNames,
     clearOnEnter = false,
     onKeyEnterPress = () => { },
@@ -39,6 +40,7 @@ const InputField = ({
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             className={`${styles.input} ${customClassNames}`}
+            placeholder={placeholder}
         >
         </input>
     );
